@@ -1,0 +1,18 @@
+@{
+    Layout = "_Layout";
+}
+
+
+<h1>flavors</h1>
+
+<br>
+@using Bakery.Models
+
+<ul>@foreach (Flavor flavor in @Model)
+{
+    <li>@Html.ActionLink(flavor.Description, "Details", "Flavors", new {id = flavor.FlavorId})</li>
+}
+</ul>
+<br>
+
+<h4><a href='/flavors/create'>Add a new flavor!</a></h4>

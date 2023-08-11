@@ -24,7 +24,7 @@ namespace Bakery
                       );
 
       builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ToDoListContext>()
+                .AddEntityFrameworkStores<BakeryContext>()
                 .AddDefaultTokenProviders();
 
       // builder.Services.Configure<IdentityOptions>(options =>

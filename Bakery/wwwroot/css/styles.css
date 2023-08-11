@@ -1,9 +1,60 @@
-div#footer {
-	position:fixed;
-	bottom:0px;
-	left:0px;
-	width:100%;
-	color:#CCC;
-	background:#333;
-	padding:8px;
+body {
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+  font-family: proxima-nova, sans-serif;
+  color: white;
+  margin-bottom: 20px;
+  background-color: rgba(33, 63, 139, 0.865);
+}
+
+#links {
+  display: flex;
+  font-size: 20px;
+  width: 100%;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background-color: rgba(33, 63, 139, 0.865);
+}
+
+a {
+  color: whitesmoke;
+  font-weight: 400;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 8px;
+  border: 2px solid white;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-family: "Helvetica Neue";
+  letter-spacing: 0.05em;
+  border-color: rgb(150, 150, 150);
+}
+
+a:hover {
+  color: rgb(89, 129, 136);
+}
+
+ul {
+  list-style: inside;
+}
+
+li {
+  margin-bottom: 20px;
+}
+
+.btn {
+  color: whitesmoke;
+  font-weight: 400;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 8px;
+  border: 2px solid white;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-family: "Helvetica Neue";
+  letter-spacing: 0.05em;
+  border-color: rgb(150, 150, 150);
 }

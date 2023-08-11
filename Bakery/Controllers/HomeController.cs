@@ -22,17 +22,19 @@ namespace Bakery.Controllers
         [HttpGet("/")]
         public async Task<ActionResult> Index()
         {
-            Category[] cats = _db.Categories.ToArray();
+            Flavor[] flavors = _db.Flavors.ToArray();
+            Treat[] treats = _db.Treats.ToArray();
             Dictionary<string, object[]> model = new Dictionary<string, object[]>();
-            model.Add("categories", cats);
+            model.Add("flavors", flavors);
+            model.Add("treats", treats);
             string userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
             if (currentUser != null)
             {
-                Item[] items = _db.Items
+                Flavor[] flavors = _db.Flavors
                             .Where(entry => entry.User.Id == currentUser.Id)
                             .ToArray();
-                model.Add("items", items);
+                model.Add("flavors", flavors);
             }
             return View(model);
         }

@@ -5,7 +5,8 @@ body {
   font-family: proxima-nova, sans-serif;
   color: white;
   margin-bottom: 20px;
-  background-color: rgba(33, 63, 139, 0.865);
+  background-image: url(https://media.timeout.com/images/105947323/1920/1080/image.jpg);
+  background-size: 1300px;
 }
 
 #links {
@@ -18,7 +19,7 @@ body {
   left: 0;
   width: 100%;
   padding: 20px;
-  background-color: rgba(33, 63, 139, 0.865);
+  background-color: rgba(223, 144, 79, 0.865);
 }
 
 a {

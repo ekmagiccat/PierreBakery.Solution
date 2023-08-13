@@ -25,11 +25,13 @@ namespace Bakery.Controllers
             return View(_db.Treats.ToList());
         }
 
+        [Authorize(Policy = "RequireAdministratorRole")]
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Policy = "RequireAdministratorRole")]
         [HttpPost]
         public ActionResult Create(Treat treat)
         {
@@ -46,6 +48,7 @@ namespace Bakery.Controllers
             return View(thisTreat);
         }
 
+        [Authorize(Policy = "RequireAdministratorRole")]
         public ActionResult AddFlavor(int id)
         {
             Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
@@ -53,6 +56,7 @@ namespace Bakery.Controllers
             return View(thisTreat);
         }
 
+        [Authorize(Policy = "RequireAdministratorRole")]
         [HttpPost]
         public ActionResult AddFlavor(Treat treat, int flavorId)
         {
@@ -67,12 +71,14 @@ namespace Bakery.Controllers
             return RedirectToAction("Details", new { id = treat.TreatId });
         }
 
+        [Authorize(Policy = "RequireAdministratorRole")]
         public ActionResult Edit(int id)
         {
             Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
             return View(thisTreat);
         }
 
+        [Authorize(Policy = "RequireAdministratorRole")]
         [HttpPost]
         public ActionResult Edit(Treat treat)
         {
@@ -81,12 +87,14 @@ namespace Bakery.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Policy = "RequireAdministratorRole")]
         public ActionResult Delete(int id)
         {
             Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
             return View(thisTreat);
         }
 
+        [Authorize(Policy = "RequireAdministratorRole")]
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -96,6 +104,7 @@ namespace Bakery.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Policy = "RequireAdministratorRole")]
         [HttpPost]
         public ActionResult DeleteJoin(int joinId)
         {

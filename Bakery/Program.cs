@@ -41,7 +41,7 @@ namespace Bakery
       builder.Services.AddAuthorization(options =>
       {
         options.AddPolicy("RequireAdministratorRole",
-          policy => policy.RequireRole("Vendor"));
+          policy => policy.RequireRole("User"));
       });
 
 

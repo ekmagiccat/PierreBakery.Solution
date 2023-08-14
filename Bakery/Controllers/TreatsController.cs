@@ -25,13 +25,13 @@ namespace Bakery.Controllers
             return View(_db.Treats.ToList());
         }
 
-        // [Authorize(Policy = "RequireAdministratorRole")]
+        [Authorize(Policy = "RequireAdministratorRole")]
         public IActionResult Create()
         {
             return View();
         }
 
-        // [Authorize(Policy = "RequireAdministratorRole")]
+        [Authorize(Policy = "RequireAdministratorRole")]
         [HttpPost]
         public IActionResult Create(Treat treat)
         {

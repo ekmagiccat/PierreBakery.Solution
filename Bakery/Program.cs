@@ -47,6 +47,22 @@ namespace Bakery
 
       WebApplication app = builder.Build();
 
+      using (var scope = app.Services.CreateScope())
+      {
+        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+        string[] roleNames = { "User" };
+        foreach (var roleName in roleNames)
+        {
+          var roleExist = roleManager.RoleExistsAsync(roleName).Result;
+          if (!roleExist)
+          {
+            roleManager.CreateAsync(new IdentityRole(roleName)).Wait();
+          }
+        }
+      }
+
+
       // app.UseDeveloperExceptionPage();
       app.UseHttpsRedirection();
       app.UseStaticFiles();

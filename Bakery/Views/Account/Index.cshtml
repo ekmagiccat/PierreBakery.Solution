@@ -2,7 +2,7 @@
   Layout = "_Layout";
 }
 
-<h2>Authentication with Identity</h2>
+<h2>Welcome to Pierre's Bakery!</h2>
 <hr />
 @if (User.Identity.IsAuthenticated)
 {
@@ -17,4 +17,5 @@ else
   <p>@Html.ActionLink("Register", "Register")</p>
   <p>@Html.ActionLink("Log in", "Login")</p>
 }
+<br>
 <p>@Html.ActionLink("Home", "Index", "Home")</p>

@@ -4,6 +4,8 @@
 
 @model Bakery.Models.Flavor
 
+@if(User.IsInRole("User")){
+
 <h2>Edit</h2>
 
 <h4>Edit flavor: @Html.DisplayFor(model => model.Type)</h4>
@@ -17,5 +19,5 @@
 
   <input type="submit" value="Save" />
 }
-
+}
 <p>@Html.ActionLink("Back to list", "Index")</p>

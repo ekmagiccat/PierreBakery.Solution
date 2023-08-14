@@ -3,6 +3,7 @@
 }
 
 @model Bakery.Models.Flavor
+@if(User.IsInRole("User")){
 
 <h4>Add a new flavor</h4>
 
@@ -12,6 +13,7 @@
   @Html.TextBoxFor(model => model.Type)
 
   <input type="submit" value="Add new flavor" class="btn" />
+}
 }
 <br>
 <p>@Html.ActionLink("Show all flavors", "Index")</p>

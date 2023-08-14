@@ -4,6 +4,8 @@
 
 @model Bakery.Models.Treat
 
+@if(User.IsInRole("User")){
+
 <h4>Add a new treat</h4>
 
 
@@ -17,3 +19,4 @@
 
 <br>
 <p>@Html.ActionLink("Show all treats", "Index")</p>
+}

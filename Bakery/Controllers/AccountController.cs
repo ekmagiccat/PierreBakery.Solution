@@ -42,7 +42,16 @@ namespace Bakery.Controllers
         IdentityResult result = await _userManager.CreateAsync(user, model.Password);
         if (result.Succeeded)
         {
-          return RedirectToAction("Index");
+          await _userManager.AddToRoleAsync(user, "User");
+          bool loginSuccess = await AutoLoginUserAsync(user.UserName);
+          if (loginSuccess)
+          {
+            return RedirectToAction("Index");
+          }
+          else
+          {
+            return RedirectToAction("Login");
+          }
         }
         else
         {
@@ -54,7 +63,6 @@ namespace Bakery.Controllers
         }
       }
     }
-
     public ActionResult Login()
     {
       return View();
@@ -76,7 +84,7 @@ namespace Bakery.Controllers
         }
         else
         {
-          ModelState.AddModelError("", "There is something wrong with your email or username. Please try again.");
+          ModelState.AddModelError("", "Something went wrong when logging in. Please try again.");
           return View(model);
         }
       }
@@ -87,6 +95,19 @@ namespace Bakery.Controllers
     {
       await _signInManager.SignOutAsync();
       return RedirectToAction("Index");
+    }
+
+
+    // Method to auto login after registering.
+    private async Task<bool> AutoLoginUserAsync(string username)
+    {
+      var user = await _userManager.FindByNameAsync(username);
+      if (user != null)
+      {
+        await _signInManager.SignInAsync(user, isPersistent: true);
+        return true;
+      }
+      return false;
     }
   }
 }

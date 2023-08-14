@@ -20,26 +20,26 @@ namespace Bakery.Controllers
             _db = db;
         }
 
-        public ActionResult Index()
+        public IActionResult Index()
         {
             return View(_db.Treats.ToList());
         }
 
-        [Authorize(Policy = "RequireAdministratorRole")]
-        public ActionResult Create()
+        // [Authorize(Policy = "RequireAdministratorRole")]
+        public IActionResult Create()
         {
             return View();
         }
 
-        [Authorize(Policy = "RequireAdministratorRole")]
+        // [Authorize(Policy = "RequireAdministratorRole")]
         [HttpPost]
-        public ActionResult Create(Treat treat)
+        public IActionResult Create(Treat treat)
         {
             _db.Treats.Add(treat);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-        public ActionResult Details(int id)
+        public IActionResult Details(int id)
         {
             Treat thisTreat = _db.Treats
                 .Include(treat => treat.JoinEntities)
@@ -49,7 +49,7 @@ namespace Bakery.Controllers
         }
 
         [Authorize(Policy = "RequireAdministratorRole")]
-        public ActionResult AddFlavor(int id)
+        public IActionResult AddFlavor(int id)
         {
             Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
             ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Type");
@@ -58,7 +58,7 @@ namespace Bakery.Controllers
 
         [Authorize(Policy = "RequireAdministratorRole")]
         [HttpPost]
-        public ActionResult AddFlavor(Treat treat, int flavorId)
+        public IActionResult AddFlavor(Treat treat, int flavorId)
         {
 #nullable enable
             FlavorTreat? joinEntity = _db.FlavorTreats.FirstOrDefault(join => (join.FlavorId == flavorId && join.TreatId == treat.TreatId));
@@ -72,7 +72,7 @@ namespace Bakery.Controllers
         }
 
         [Authorize(Policy = "RequireAdministratorRole")]
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
             Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
             return View(thisTreat);
@@ -80,7 +80,7 @@ namespace Bakery.Controllers
 
         [Authorize(Policy = "RequireAdministratorRole")]
         [HttpPost]
-        public ActionResult Edit(Treat treat)
+        public IActionResult Edit(Treat treat)
         {
             _db.Treats.Update(treat);
             _db.SaveChanges();
@@ -88,7 +88,7 @@ namespace Bakery.Controllers
         }
 
         [Authorize(Policy = "RequireAdministratorRole")]
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
             return View(thisTreat);
@@ -96,7 +96,7 @@ namespace Bakery.Controllers
 
         [Authorize(Policy = "RequireAdministratorRole")]
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
             Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
             _db.Treats.Remove(thisTreat);
@@ -106,7 +106,7 @@ namespace Bakery.Controllers
 
         [Authorize(Policy = "RequireAdministratorRole")]
         [HttpPost]
-        public ActionResult DeleteJoin(int joinId)
+        public IActionResult DeleteJoin(int joinId)
         {
             FlavorTreat joinEntry = _db.FlavorTreats.FirstOrDefault(entry => entry.FlavorTreatId == joinId);
             _db.FlavorTreats.Remove(joinEntry);

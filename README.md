@@ -11,6 +11,7 @@
 - ASP.NET Core MVC
 - VS Code
 - Entity Framework Core
+- Identity
 
 ## Description
 
@@ -31,18 +32,6 @@ Install the tools that are introduced in [this series of lessons on LearnHowToPr
 - Navigate to this project's production directory called "HairSalon" using the command `cd Bakery` in the command line.
 - Run `dotnet build` to compile the application.
 
-### Import the MySQL Database:
-
-- Open MySQL Workbench, in the Navigator > Administration window, select Data Import/Restore.
-- In Import Options select Import from Self-Contained File.
-- Navigate to the sql file located in the root directory Bakery of this project called eva_kemp_bakery.sql
-- Under Default Schema to be Imported To, select the New button.
-- Choose another name for your database, or use eva_kemp_bakery.sql, then click OK
-- Navigate to the tab called Import Progress and click Start Import at the bottom right corner of the window.
-- After you are finished with the above steps, reopen the Navigator > Schemas tab.
-- Right click and select Refresh All.
-- Your new database will appear!
-
 ### Set Up and Run Project
 
 1. Open the terminal and navigate to this project's production directory called "Bakery".
@@ -58,8 +47,9 @@ Install the tools that are introduced in [this series of lessons on LearnHowToPr
 ```
 
 4. Check the .gitignore file to ensure that `appsettings.json` is listed and remains hidden.
-5. Within the production directory "Bakery", run `dotnet watch run` in the command line to start the project in development mode with a watcher.
-6. Open the browser to _https://localhost:5001_. If you cannot access localhost:5001 it is likely because you have not configured a .NET developer security certificate for HTTPS. To learn about this, review this lesson: [Redirecting to HTTPS and Issuing a Security Certificate](https://www.learnhowtoprogram.com/lessons/redirecting-to-https-and-issuing-a-security-certificate).
+5. Navigate to the production directory "Bakery", run `dotnet ef database update` to instantiate the database in My SQL.
+6. Within the production directory "Bakery", run `dotnet watch run` in the command line to start the project in development mode with a watcher.
+7. Open the browser to _https://localhost:5001_. If you cannot access localhost:5001 it is likely because you have not configured a .NET developer security certificate for HTTPS. To learn about this, review this lesson: [Redirecting to HTTPS and Issuing a Security Certificate](https://www.learnhowtoprogram.com/lessons/redirecting-to-https-and-issuing-a-security-certificate).
 
 ## Known Bugs
 
